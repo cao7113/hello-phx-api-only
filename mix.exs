@@ -38,7 +38,12 @@ defmodule Hi.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+
+      # Dev Tools
+      # https://github.com/ash-project/igniter?tab=readme-ov-file#installation
+      # mix igniter.install git_ops
+      {:igniter, "~> 0.6", only: [:dev, :test]}
     ]
   end
 
