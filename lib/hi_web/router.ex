@@ -9,5 +9,6 @@ defmodule HiWeb.Router do
     pipe_through(:api)
 
     get("/", ApiController, :home)
+    get("/ping", ApiController, :ping)
   end
 end
