@@ -1,10 +1,14 @@
 # https://taskfile.dev/usage/
-version: '3'
+version: "3"
 tasks:
   default: mix test
   sh: iex --erl "-kernel shell_history enabled" -S mix
   run: iex --erl "-kernel shell_history enabled" -S mix phx.server
   fmt: mix format
+
+  # Git ops
+  ops.init: mix git_ops.release --initial
+  ops.up: mix git_ops.release
 
   setup: |
     mix deps.get

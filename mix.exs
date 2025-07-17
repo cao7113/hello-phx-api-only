@@ -1,10 +1,11 @@
 defmodule Hi.MixProject do
   use Mix.Project
 
+  @version "0.1.0"
   def project do
     [
       app: :hi,
-      version: "0.1.0",
+      version: @version,
       elixir: "~> 1.15",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
@@ -33,6 +34,7 @@ defmodule Hi.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:git_ops, "~> 2.0", only: [:dev], runtime: false},
       {:phoenix, "~> 1.8.0-rc.4", override: true},
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
