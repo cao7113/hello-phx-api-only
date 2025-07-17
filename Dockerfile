@@ -15,8 +15,11 @@ ARG ELIXIR_VERSION=1.18.4
 ARG OTP_VERSION=27.3.4
 ARG DEBIAN_VERSION=bookworm-20250610-slim
 
-ARG BUILDER_IMAGE="docker.io/hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-debian-${DEBIAN_VERSION}"
-ARG RUNNER_IMAGE="docker.io/debian:${DEBIAN_VERSION}"
+# ARG BUILDER_IMAGE="docker.io/hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-debian-${DEBIAN_VERSION}"
+# ARG RUNNER_IMAGE="docker.io/debian:${DEBIAN_VERSION}"
+# https://community.fly.io/t/fly-launch-generates-invalid-dockerfile-for-phoenix-application/25200
+ARG BUILDER_IMAGE="hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-debian-${DEBIAN_VERSION}"
+ARG RUNNER_IMAGE="debian:${DEBIAN_VERSION}"
 
 FROM ${BUILDER_IMAGE} AS builder
 
