@@ -16,6 +16,10 @@ defmodule HiWeb.ApiController do
     })
   end
 
+  def info(conn, _params) do
+    json(conn, Hi.build_info())
+  end
+
   def mock_404(_conn, _) do
     {:error, :not_found}
   end

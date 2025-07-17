@@ -1,6 +1,6 @@
 defmodule Hi.MixProject do
   use Mix.Project
-
+  @source_url "https://github.com/cao7113/hello-phx-api-only"
   @version "0.1.0"
   def project do
     [
@@ -11,6 +11,7 @@ defmodule Hi.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
+      source_url: @source_url,
       listeners: [Phoenix.CodeReloader]
     ]
   end
@@ -44,7 +45,6 @@ defmodule Hi.MixProject do
 
       # Dev Tools
       # https://github.com/ash-project/igniter?tab=readme-ov-file#installation
-      # mix igniter.install git_ops
       {:igniter, "~> 0.6", only: [:dev, :test]}
     ]
   end

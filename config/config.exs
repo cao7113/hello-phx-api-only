@@ -7,6 +7,14 @@
 # General application configuration
 import Config
 
+## Build Info
+config :hi,
+  build_mode: config_env(),
+  build_time: DateTime.utc_now(),
+  source_url: Mix.Project.config()[:source_url],
+  commit_id: System.get_env("GIT_COMMIT_ID", ""),
+  commit_time: System.get_env("GIT_COMMIT_TIME", "")
+
 config :git_ops,
   mix_project: Mix.Project.get!(),
   types: [tidbit: [hidden?: true], important: [header: "Important Changes"]],

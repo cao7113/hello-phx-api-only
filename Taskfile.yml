@@ -1,5 +1,8 @@
 # https://taskfile.dev/usage/
 version: "3"
+vars:
+  DOCKER_IMG_NAME: hello-phx-api-only
+  DOCKER_CONTAINER_NAME: hi
 tasks:
   default: mix test
   sh: iex --erl "-kernel shell_history enabled" -S mix
@@ -8,7 +11,35 @@ tasks:
 
   # Git ops
   ops.init: mix git_ops.release --initial
-  ops.up: mix git_ops.release
+  ops.up: mix git_ops.release # && git push --follow-tags
+  ops.tp: mix eh.git.ops.types
+  ops.setup: |
+    # run after add igniter dep in mix.exs
+    mix igniter.install git_ops
 
+  ## Docker
+  dk.build: docker build -t {{.DOCKER_IMG_NAME}} .
+  dk.run: |
+    task dk.build
+    docker run --name {{.DOCKER_CONTAINER_NAME}} --rm -it -p 4010:4000 \
+      -e "PHX_SERVER=true" \
+      -e "SECRET_KEY_BASE=g7kQjVqv2DsMrb4AJABkKoIGIZuFP3R2xZT4tJ9mdh9Xt92JJPIa1wk2g/lz2G+x" \
+      -e "RELEASE_DISTRIBUTION=name" \
+      -e "RELEASE_NODE=hi@{{.DOCKER_CONTAINER_NAME}}.orb.local" \
+      -e "RELEASE_COOKIE=hello" \
+      {{.DOCKER_IMG_NAME}} bin/hi start_iex
+
+  dk.iex: docker exec -it {{.DOCKER_CONTAINER_NAME}} bin/hi remote
+  dk.in: docker exec -it {{.DOCKER_CONTAINER_NAME}} sh
+  dk.sh: docker run --rm -it {{.DOCKER_IMG_NAME}} sh
+  dk.info: |
+    docker exec -it {{.DOCKER_CONTAINER_NAME}} bin/hi
+  dk.ping: curl https://{{.DOCKER_CONTAINER_NAME}}.orb.local/ping | jq
+  dk.down: docker stop {{.DOCKER_CONTAINER_NAME}}
+  dk.com.test: |
+    docker compose version
+    docker compose up --quiet-pull --exit-code-from curl # --abort-on-container-exit
+
+  ## Setup
   setup: |
     mix deps.get

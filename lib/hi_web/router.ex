@@ -10,5 +10,6 @@ defmodule HiWeb.Router do
 
     get("/", ApiController, :home)
     get("/ping", ApiController, :ping)
+    get("/info", ApiController, :info)
   end
 end
