@@ -1,7 +1,7 @@
 defmodule Hi.MixProject do
   use Mix.Project
   @source_url "https://github.com/cao7113/hello-phx-api-only"
-  @version "0.2.0"
+  @version "0.2.1"
   def project do
     [
       app: :hi,

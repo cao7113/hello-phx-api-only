@@ -5,6 +5,15 @@ See [Conventional Commits](Https://conventionalcommits.org) for commit guideline
 
 <!-- changelog -->
 
+## v0.2.1 (2025-07-17)
+
+
+
+
+### Bug Fixes:
+
+* bad docker image tag in github-actions build by Ryn Cao
+
 ## v0.2.0 (2025-07-17)
 
 
