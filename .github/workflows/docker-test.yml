@@ -1,8 +1,8 @@
 name: Docker Compose Test
 on:
-  push:
-    branches:
-      - docker
+  # push:
+  #   branches:
+  #     - docker
   workflow_dispatch:
   workflow_call:
 
