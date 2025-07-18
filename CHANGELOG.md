@@ -5,6 +5,15 @@ See [Conventional Commits](Https://conventionalcommits.org) for commit guideline
 
 <!-- changelog -->
 
+## v0.3.0 (2025-07-18)
+
+
+
+
+### Features:
+
+* add distribution with flyio info by Ryn Cao
+
 ## v0.2.2 (2025-07-17)
 
 
