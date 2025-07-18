@@ -3,19 +3,26 @@ version: "3"
 vars:
   DOCKER_IMG_NAME: hello-phx-api-only
   DOCKER_CONTAINER_NAME: hi
+includes:
+  # task f:iex
+  flyio:
+    taskfile: ./Taskfile-flyio.yml
+    aliases: [f, fly]
+    optional: true
 tasks:
   default: mix test
   sh: iex --erl "-kernel shell_history enabled" -S mix
   run: iex --erl "-kernel shell_history enabled" -S mix phx.server
   fmt: mix format
 
-  # Git ops
+  ## Git ops
   ops.init: mix git_ops.release --initial
+  ops.up: |
+    mix git_ops.release --yes
+    git push --follow-tags
   ops.up.rel: mix git_ops.release
   ops.up.tag: git push --follow-tags
-  ops.up: |
-    task ops.up.rel ops.up.tag
-  ops.tp: mix eh.git.ops.types
+  ops.types: mix eh.git.ops.types
   ops.setup: |
     # run after add igniter dep in mix.exs
     mix igniter.install git_ops

@@ -1,0 +1,38 @@
+# fly.toml app configuration file generated for hello-phx-api-only on 2025-07-17T19:02:39+08:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'hello-phx-api-only'
+primary_region = 'nrt'
+kill_signal = 'SIGTERM'
+
+[build]
+
+[env]
+PHX_HOST = 'hello-phx-api-only.fly.dev'
+PORT = '8080'
+# ECTO_IPV6 = true
+ERL_AFLAGS = '-proto_dist inet6_tcp'
+# Clustering set in rel/env.sh.eex
+DNS_CLUSTER_QUERY = "hello-phx-api-only"
+RELEASE_COOKIE = "happy-cookie-not-secret-but-for-cluster"
+
+[http_service]
+internal_port = 8080
+force_https = true
+auto_stop_machines = 'suspend'
+auto_start_machines = true
+min_machines_running = 1
+processes = ['app']
+
+[http_service.concurrency]
+type = 'connections'
+hard_limit = 1000
+soft_limit = 1000
+
+[[vm]]
+# NOTE: IEx require 512m+ memory
+memory = '512mb'
+cpu_kind = 'shared'
+cpus = 1

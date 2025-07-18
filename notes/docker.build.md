@@ -9,5 +9,7 @@ https://hub.docker.com/r/hexpm/elixir/tags?name=1.18.4-erlang-27.3.4-debian-book
 对比linux/arm64/v8 架构 和 linux/amd64 架构
 
 github上默认使用的是 linux/amd64 x86-64 (AMD64)
+本地mac本上的m1芯片，使用的linux/arm64/v8 架构，所以导致本地没问题，github actions里报错，platform不匹配
+苹果 M1 芯片是 ​ARM 架构​ 的芯片，​不是 AMD​ 的芯片。
 
 https://docs.docker.com/build/ci/github-actions/multi-platform/

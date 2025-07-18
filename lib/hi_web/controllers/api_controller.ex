@@ -17,7 +17,14 @@ defmodule HiWeb.ApiController do
   end
 
   def info(conn, _params) do
-    json(conn, Hi.build_info())
+    # TODO: need authorize or keep secret?
+    info = %{
+      build: Hi.build_info(),
+      flyio: Flyinfo.env_vars(),
+      distribution: Release.distribution()
+    }
+
+    json(conn, info)
   end
 
   def mock_404(_conn, _) do

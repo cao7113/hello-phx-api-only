@@ -1,5 +1,11 @@
 # Hello API-only with Phoenix
 
+No db/ecto/mailer/gettext etc. deps.
+
+Just for phx and api playground and learning!
+
+## Develop
+
 To start your Phoenix server:
 
 * Run `mix setup` to install and setup dependencies

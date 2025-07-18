@@ -15,14 +15,6 @@ config :hi,
   commit_id: System.get_env("GIT_COMMIT_ID", ""),
   commit_time: System.get_env("GIT_COMMIT_TIME", "")
 
-config :git_ops,
-  mix_project: Mix.Project.get!(),
-  types: [tidbit: [hidden?: true], important: [header: "Important Changes"]],
-  github_handle_lookup?: true,
-  version_tag_prefix: "v",
-  manage_mix_version?: true,
-  manage_readme_version: true
-
 config :hi,
   generators: [timestamp_type: :utc_datetime]
 
