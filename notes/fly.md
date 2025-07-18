@@ -38,3 +38,7 @@ hello-phx-api-only-01K0C2PDQKF6X615NXX8V6VBXC@fdaa:2:686c:a7b:465:821d:76c3:2
 ### Cluster from Home
 
 https://fly.io/docs/elixir/advanced-guides/clustering-from-home-to-your-app-in-fly/
+
+## Observer
+
+https://fly.io/docs/elixir/advanced-guides/connect-observer-to-your-app/

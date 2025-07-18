@@ -35,7 +35,7 @@ tasks:
     echo task fly:upv -- $latest_tag
   reup: fly app restart
   log: fly logs
-  open: fly open
+  open: fly apps open
   vm: fly machine ls
   ls: fly app ls
   db: fly postgres connect -a {{.FLY_DB_APP_NAME}}

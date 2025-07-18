@@ -32,6 +32,8 @@ tasks:
   # task remote.connect6
   # CLUSTER_APP_NAME=xxx task remote.connect6
   remote.connect6:
+    aliases:
+      - remote.c6
     # https://fly.io/docs/elixir/advanced-guides/clustering-from-home-to-your-app-in-fly/
     env:
       ERL_AFLAGS: "-proto_dist inet6_tcp -kernel shell_history enabled"
@@ -40,6 +42,15 @@ tasks:
     cmds:
       - echo "==Custerning into remote app ${CLUSTER_APP_NAME}"
       - run/cluster-with-remote.sh
+  # https://fly.io/docs/elixir/advanced-guides/connect-observer-to-your-app/
+  observer:
+    aliases:
+      - observe
+    env:
+      COOKIE: happy-cookie-not-secret-but-for-cluster
+    cmds:
+      - echo "==Observing remote app"
+      - run/observer.sh
 
   fmt: mix format
 
