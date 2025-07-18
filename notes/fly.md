@@ -34,3 +34,7 @@ FLY_IMAGE_REF=registry.fly.io/hello-phx-api-only:deployment-01K0C2PDQKF6X615NXX8
 root@d8d4017a0d1438:/app# echo "${FLY_APP_NAME}-${FLY_IMAGE_REF##*-}@${FLY_PRIVATE_IP}"
 hello-phx-api-only-01K0C2PDQKF6X615NXX8V6VBXC@fdaa:2:686c:a7b:465:821d:76c3:2
 ```
+
+### Cluster from Home
+
+https://fly.io/docs/elixir/advanced-guides/clustering-from-home-to-your-app-in-fly/

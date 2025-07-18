@@ -1,4 +1,10 @@
+# Docker build
+
+## Error
+
+```
 ERROR: failed to build: failed to solve: docker.io/hexpm/elixir:1.18.4-erlang-27.3.4-debian-bookworm-20250610-slim: failed to resolve source metadata for docker.io/hexpm/elixir:1.18.4-erlang-27.3.4-debian-bookworm-20250610-slim: no match for platform in manifest: not found
+```
 
 https://community.fly.io/t/fly-launch-generates-invalid-dockerfile-for-phoenix-application/25200
 

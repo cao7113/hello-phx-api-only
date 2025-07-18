@@ -1,3 +1,6 @@
+# Flyio launch
+
+```
 dependencies are up to date
 Compiling 9 files (.ex)
 Generated hi app
@@ -54,3 +57,4 @@ NOTE: The machines for [app] have services with 'auto_stop_machines = "stop"' th
 Checking DNS configuration for hello-phx-api-only.fly.dev
 
 Visit your newly deployed app at https://hello-phx-api-only.fly.dev/
+```

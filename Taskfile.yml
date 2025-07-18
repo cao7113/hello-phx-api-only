@@ -3,6 +3,7 @@ version: "3"
 vars:
   DOCKER_IMG_NAME: hello-phx-api-only
   DOCKER_CONTAINER_NAME: hi
+  LOCAL_MAGIC_COOKIE: hello
 includes:
   # task f:iex
   flyio:
@@ -13,6 +14,33 @@ tasks:
   default: mix test
   sh: iex --erl "-kernel shell_history enabled" -S mix
   run: iex --erl "-kernel shell_history enabled" -S mix phx.server
+  node:
+    env:
+      # RELEASE_DISTRIBUTION: name
+      ERL_AFLAGS: "-kernel shell_history enabled"
+    cmds:
+      - |
+        iex --name {{.DOCKER_CONTAINER_NAME}}@127.0.0.1 --cookie {{.LOCAL_MAGIC_COOKIE}} -S mix
+  node6:
+    env:
+      # RELEASE_DISTRIBUTION: name
+      ERL_AFLAGS: "-proto_dist inet6_tcp -kernel shell_history enabled"
+    cmds:
+      - |
+        iex --name {{.DOCKER_CONTAINER_NAME}}@::1 --cookie {{.LOCAL_MAGIC_COOKIE}} -S mix
+
+  # task remote.connect6
+  # CLUSTER_APP_NAME=xxx task remote.connect6
+  remote.connect6:
+    # https://fly.io/docs/elixir/advanced-guides/clustering-from-home-to-your-app-in-fly/
+    env:
+      ERL_AFLAGS: "-proto_dist inet6_tcp -kernel shell_history enabled"
+      CLUSTER_APP_NAME: "hello-phx-api-only"
+      RELEASE_COOKIE: happy-cookie-not-secret-but-for-cluster
+    cmds:
+      - echo "==Custerning into remote app ${CLUSTER_APP_NAME}"
+      - run/cluster-with-remote.sh
+
   fmt: mix format
 
   ## Git ops
@@ -36,7 +64,7 @@ tasks:
       -e "SECRET_KEY_BASE=g7kQjVqv2DsMrb4AJABkKoIGIZuFP3R2xZT4tJ9mdh9Xt92JJPIa1wk2g/lz2G+x" \
       -e "RELEASE_DISTRIBUTION=name" \
       -e "RELEASE_NODE=hi@{{.DOCKER_CONTAINER_NAME}}.orb.local" \
-      -e "RELEASE_COOKIE=hello" \
+      -e "RELEASE_COOKIE={{.LOCAL_MAGIC_COOKIE}}" \
       {{.DOCKER_IMG_NAME}} bin/hi start_iex
 
   dk.iex: docker exec -it {{.DOCKER_CONTAINER_NAME}} bin/hi remote
