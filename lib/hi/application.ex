@@ -9,7 +9,7 @@ defmodule Hi.Application do
   def start(_type, _args) do
     children = [
       HiWeb.Telemetry,
-      {DNSCluster, query: Application.get_env(:hi, :dns_cluster_query) || :ignore, log: true},
+      {DNSCluster, query: Application.get_env(:hi, :dns_cluster_query) || :ignore, log: :info},
       {Phoenix.PubSub, name: Hi.PubSub},
       # Start a worker by calling: Hi.Worker.start_link(arg)
       # {Hi.Worker, arg},
