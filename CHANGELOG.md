@@ -5,6 +5,15 @@ See [Conventional Commits](Https://conventionalcommits.org) for commit guideline
 
 <!-- changelog -->
 
+## v0.3.2 (2025-07-18)
+
+
+
+
+### Bug Fixes:
+
+* dns-cluster log from true to info log-level by Ryn Cao
+
 ## v0.3.1 (2025-07-18)
 
 
