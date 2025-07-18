@@ -5,6 +5,15 @@ See [Conventional Commits](Https://conventionalcommits.org) for commit guideline
 
 <!-- changelog -->
 
+## v0.3.1 (2025-07-18)
+
+
+
+
+### Bug Fixes:
+
+* add dns-cluster log info and DnsResolver.lookup by Ryn Cao
+
 ## v0.3.0 (2025-07-18)
 
 
