@@ -43,6 +43,8 @@ tasks:
       - echo "==Custerning into remote app ${CLUSTER_APP_NAME}"
       - run/cluster-with-remote.sh
   # https://fly.io/docs/elixir/advanced-guides/connect-observer-to-your-app/
+  # NOTE:
+  # - If everything worked and it’s connected, under the Nodes menu you should see the connected remote node.
   observer:
     aliases:
       - observe
