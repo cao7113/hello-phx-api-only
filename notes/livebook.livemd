@@ -1,0 +1,51 @@
+# HelloPhx API only notes
+
+```elixir
+Mix.install([
+  {:kino, "~> 0.16.0"},
+  {:req, "~> 0.5.15"}
+])
+```
+
+## Node info
+
+```elixir
+%{
+  node: Node.self(),
+  cookie: Node.get_cookie(),
+  nodes: Node.list()
+} |> Kino.Tree.new
+```
+
+## Flyio land
+
+### API request
+
+http://hello-phx-api-only.internal:8080/info
+
+<!-- livebook:{"break_markdown":true} -->
+
+###
+
+```elixir
+req =
+  Req.new(
+    method: :get,
+    url: "http://hello-phx-api-only.internal:8080/info",
+    headers: %{},
+    params: %{}
+  )
+req = Req.merge(req, inet6: true)
+{req, resp} = Req.request(req)
+dist_info = resp.body["distribution"]
+```
+
+### Remote execution
+
+```elixir
+require Kino.RPC
+node = String.to_atom(dist_info["node"])
+cookie = String.to_atom(dist_info["cookie"])
+Node.set_cookie(node, cookie)
+Kino.RPC.eval_string(node, ~S"Hi.build_info()", file: __ENV__.file)
+```
